@@ -662,14 +662,16 @@ def game_data():
     cprint("LAUNCHER CREATOR: " + branch_creator, "blue")
     cprint("GAME VERSION: " + version, "blue")
     mod_no = 0
-    cprint("MODIFICATIONS ADDED", "blue")
+    cprint("MODIFICATIONS ADDED", "yellow")
     for mod in mods:
         cprint(mod + " (" + mod_versions[mod_no] + ")", "blue")
         mod_no += 1
-    cprint("PYTHON VERSION:", "blue")
+    cprint("PYTHON VERSION:", "yellow")
     cprint(python_version, "blue")
+    cprint("ACKNOWLEDGMENTS:", "yellow")
     for ackn in acknowledgements:
         cprint(ackn, "blue")
+    cprint(other, "blue")
 
 
 def debug_stuff():
