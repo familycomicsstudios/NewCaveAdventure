@@ -73,7 +73,7 @@ ss = 30
 ts = 0
 wis = 0
 hs = 0
-os = 0
+ots = 0
 #Inventory, items list
 invent = []
 items = [
@@ -236,7 +236,7 @@ rooms[26] = Room(
 #funcs
 def start_room(room):
     global room_no, wis, invent, hs, vmach, tookCoins
-    global isKey, ss, os
+    global isKey, ss, ots
     cprint(room.str, "green")
     room_no = room.no
     if wis < room_no:
@@ -363,7 +363,7 @@ def start_room(room):
                             "green")
                         i = invent.index(14)
                         invent = invent[:i] + [17] + invent[i + 1:]
-                        os += 25
+                        ots += 25
                     else:
                         cprint("You can only deposit a golden sword here!",
                                "green")
@@ -555,6 +555,10 @@ Enclosed are some coins.""", "green")
                     cprint("You can't attack that.", "green")
             elif command == "debug":
                 debug_stuff()
+            #----------------MODDING-------------#
+            elif False:
+                pass
+            #------------------------------------#
             else:
                 cprint("I don't know what that means!", "green")
         except:
@@ -640,9 +644,9 @@ def score():
     cprint("Survival: " + str(ss), "green")
     cprint("Getting well in: " + str(wis), "green")
     cprint("Hints used: " + str(0 - hs), "green")
-    if os > 0:
-        print("Other: " + str(os), "green")
-    cprint("Score: " + str(ts + ss + wis + hs + os), "green")
+    if ots > 0:
+        cprint("Other: " + str(ots), "green")
+    cprint("Score: " + str(ts + ss + wis + hs + ots), "green")
 
 
 def news():
