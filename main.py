@@ -1,6 +1,6 @@
 """
 Colossal Cave Adventure Sequel
-v0.6
+v1.0.0 Working
 
 Created by TheMadPunter
 © 2022
@@ -11,11 +11,11 @@ number of rooms + total of itemScore + 30
 """
 import sys
 #-------------------METADATA----------------#
-version = "v0.6.0"
+version = "v1.0.0"
 branch_creator = "TheMadPunter"
 python_version = sys.version
 mods = ["Vanilla CCA Engine by Themadpunter"]
-mod_versions = ["v1.0 Completed"]
+mod_versions = ["v1.0.0 Completed"]
 modpack_name = "Vanilla CCA Engine"
 acknowledgements = ["Willie Crowther and Don Woods for Original Game"]
 other = """"""
@@ -59,10 +59,10 @@ Silver (25)
 Scale (25)
 Platinum Sword (50)
 OTHER STUFF
-Get well in (25)
+Get well in (26)
 Don't die (30)
 Get Excalibur (25)
-SCORE: 196
+SCORE: 267
 """
 #Other
 vmach = 0
@@ -233,10 +233,22 @@ rooms[26] = Room(
     0)
 
 
+### Need to pre reference
+def rscore():
+    return (ts + ss + wis + ots)
+
+
 #funcs
 def start_room(room):
     global room_no, wis, invent, hs, vmach, tookCoins
     global isKey, ss, ots
+    scores = rscore()
+    if scores + hs >= 267:
+        cprint(
+            "Congratulations, adventurer! Your adventure is over! You have collected everything in the game.",
+            "green")
+        score()
+        game_over()
     cprint(room.str, "green")
     room_no = room.no
     if wis < room_no:
@@ -555,6 +567,8 @@ Enclosed are some coins.""", "green")
                     cprint("You can't attack that.", "green")
             elif command == "debug":
                 debug_stuff()
+            elif command == "game":
+                game_data()
             #----------------MODDING-------------#
             elif False:
                 pass
@@ -563,6 +577,16 @@ Enclosed are some coins.""", "green")
                 cprint("I don't know what that means!", "green")
         except:
             cprint("I don't think that works.", "green")
+
+
+def score():
+    cprint("Treasures: " + str(ts), "green")
+    cprint("Survival: " + str(ss), "green")
+    cprint("Getting well in: " + str(wis), "green")
+    cprint("Hints used: " + str(0 - hs), "green")
+    if ots > 0:
+        cprint("Other: " + str(ots), "green")
+    cprint("Score: " + str(ts + ss + wis + hs + ots), "green")
 
 
 def inventory():
@@ -639,18 +663,11 @@ def info_cca():
         "green")
 
 
-def score():
-    cprint("Treasures: " + str(ts), "green")
-    cprint("Survival: " + str(ss), "green")
-    cprint("Getting well in: " + str(wis), "green")
-    cprint("Hints used: " + str(0 - hs), "green")
-    if ots > 0:
-        cprint("Other: " + str(ots), "green")
-    cprint("Score: " + str(ts + ss + wis + hs + ots), "green")
-
-
 def news():
-    cprint("V0.5 more stuff like excalibur", "green")
+    cprint(
+        "V1.0.0 Working: You can win now! Added a lot of documentation, plus the game works.",
+        "green")
+    cprint("V0.5: more stuff like excalibur", "green")
     cprint("V0.4: Added a lot more treasure and also a dragon", "green")
     cprint("V0.3: We have a 151 point game yay", "green")
     cprint(

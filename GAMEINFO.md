@@ -40,6 +40,10 @@ news
 
 hint
 
+debug
+
+game
+
 #  Items
 
 take
@@ -75,6 +79,10 @@ attack
 get
 
 grab
+
+kill
+
+slay
 
 # Magic
 
