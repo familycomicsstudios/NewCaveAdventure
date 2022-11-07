@@ -1,6 +1,6 @@
 """
 Colossal Cave Adventure Sequel
-v1.0.0 Working
+v1.0.1 Completed
 
 Created by TheMadPunter
 © 2022
@@ -11,11 +11,11 @@ number of rooms + total of itemScore + 30
 """
 import sys
 #-------------------METADATA----------------#
-version = "v1.0.0"
+version = "v1.0.1 Completed"
 branch_creator = "TheMadPunter"
 python_version = sys.version
 mods = ["Vanilla CCA Engine by Themadpunter"]
-mod_versions = ["v1.0.0 Completed"]
+mod_versions = ["v1.0.1 Completed"]
 modpack_name = "Vanilla CCA Engine"
 acknowledgements = ["Willie Crowther and Don Woods for Original Game"]
 other = """"""
