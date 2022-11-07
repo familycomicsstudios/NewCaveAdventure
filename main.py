@@ -1,6 +1,6 @@
 """
 Colossal Cave Adventure Sequel
-v1.0.2 Completed
+v1.0.3 Completed
 
 Created by TheMadPunter
 © 2022
@@ -11,24 +11,16 @@ number of rooms + total of itemScore + 30
 """
 import sys
 #-------------------METADATA----------------#
-version = "v1.0.2 Completed"
+version = "v1.0.3 Completed"
 branch_creator = "TheMadPunter"
 python_version = sys.version
 mods = ["Vanilla CCA Engine by Themadpunter"]
-mod_versions = ["v1.0.2 Completed"]
+mod_versions = ["v1.0.3 Completed"]
 modpack_name = "Vanilla CCA Engine"
 acknowledgements = ["Willie Crowther and Don Woods for Original Game"]
 other = """"""
 debug = 0
 #-------------------END META----------------#
-
-#-----------------IMPORT MODS---------------#
-# IMPORTING MODS:
-# To import a mod, just type here: "import mod"
-# CREATING MODS:
-# Basically just copy the functions you want to change, and change them.
-
-#-------------------------------------------#
 ########################################
 ##                                    ##
 ##       Main program starts          ##
@@ -673,6 +665,7 @@ def info_cca():
 
 def news():
     cprint("GAME CHANGELOG", "red")
+    cprint("V1.0.3 Finished: Fixed modloader, made it better")
     cprint("V1.0.2 Finished: Modloader capability", "yellow")
     cprint("V1.0.1 Finished: Small updates about modding", "yellow")
     cprint(
@@ -724,6 +717,15 @@ def game_over():
     os._exit(1)
 
 
+#-----------------IMPORT MODS---------------#
+# IMPORTING MODS:
+# To import a mod, just type here:
+# exec(open(sys.path[0]+"/mod.py").read())
+# CREATING MODS:
+# Basically just copy the functions you want to change, and change them.
+if debug == 1:
+    cprint("Adding mods...", "red")
+#-------------------------------------------#
 ## Run modpack functions here!
 if debug == 1:
     cprint("Loading mods...", "red")
