@@ -1,5 +1,7 @@
 # Modding
 To mod this game, here are some basic instructions.
+## How to make Seperate File mods
+Instead of changing the code in the game itself, you can make a new file for the game to open up (aka reference). Just do everything here. But when adding new code, copy a code definition (like a score function, etc) and redefine it in the mod file.
 ## Metadata
 You may change the game's metadata to document new modifications.
 ```
@@ -49,3 +51,30 @@ When you modify this game, please do not remove any credit from any other design
 If you would like to distribute a mod of this software under a different liscense, please contact me (Github: familycomicsstudios).
 ### Notes
 This software's base gameplay was created by Willie Crowther and Don Woods. I did not use any code from the original game, however, please note that I made some references to the original game's text. The original game is currently in the public domain, feel free to play it at some point.
+## Importing Seperate File Mods
+To import a "Seperate File Mod", all you need to do is find this piece of code:
+```
+#-----------------IMPORT MODS---------------#
+# IMPORTING MODS:
+# To import a mod, just type here:
+# exec(open(sys.path[0]+"/mod.py").read())
+# CREATING MODS:
+# Basically just copy the functions you want to change, and change them.
+if debug == 1:
+    cprint("Adding mods...", "red")
+#-------------------------------------------#
+## Run modpack functions here!
+if debug == 1:
+    cprint("Loading mods...", "red")
+```
+Add your mod here:
+```
+# Basically just copy the functions you want to change, and change them.
+if debug == 1:
+    cprint("Adding mods...", "red")
+## My mod
+exec(open(sys.path[0]+"/mod.py").read())
+if debug == 1:
+    cprint("Added a mod!", "red")
+#-------------------------------------------#
+```
