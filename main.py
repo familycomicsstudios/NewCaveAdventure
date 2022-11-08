@@ -1,9 +1,9 @@
 """
 Colossal Cave Adventure Sequel
-v1.0.3 Completed
+v1.1.0 Completed
 
 Created by TheMadPunter
-© 2022
+(c) 2022
 
 INFO:
 Game points max:
@@ -11,11 +11,11 @@ number of rooms + total of itemScore + 30
 """
 import sys
 #-------------------METADATA----------------#
-version = "v1.0.3 Completed"
+version = "v1.1.0 Completed"
 branch_creator = "TheMadPunter"
 python_version = sys.version
 mods = ["Vanilla CCA Engine by Themadpunter"]
-mod_versions = ["v1.0.3 Completed"]
+mod_versions = ["v1.1.0 Completed"]
 modpack_name = "Vanilla CCA Engine"
 acknowledgements = ["Willie Crowther and Don Woods for Original Game"]
 other = """"""
@@ -669,7 +669,10 @@ def info_cca():
 
 def news():
     cprint("GAME CHANGELOG", "red")
-    cprint("V1.0.3 Finished: Fixed modloader, made it better")
+    cprint(
+        "V1.1.0 Finished: Loadmod command, auto mod loading, mods can now run custom commands",
+        "blue")
+    cprint("V1.0.3 Finished: Fixed modloader, made it better", "yellow")
     cprint("V1.0.2 Finished: Modloader capability", "yellow")
     cprint("V1.0.1 Finished: Small updates about modding", "yellow")
     cprint(
