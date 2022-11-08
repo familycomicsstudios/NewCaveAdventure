@@ -569,6 +569,10 @@ Enclosed are some coins.""", "green")
                 debug_stuff()
             elif command == "game":
                 game_data()
+            elif split[0] == "loadmod":
+                open_mod(split[1])
+            elif mod_functions(command, split, fullcommand) == True:
+                pass
             #----------------MODDING-------------#
             elif False:
                 pass
@@ -717,18 +721,33 @@ def game_over():
     os._exit(1)
 
 
+def open_mod(file):
+    try:
+        exec(open(file).read())
+    except:
+        cprint("No such file exists!", "red")
+
+
 #-----------------IMPORT MODS---------------#
-# IMPORTING MODS:
-# To import a mod, just type here:
-# exec(open(sys.path[0]+"/mod.py").read())
-# CREATING MODS:
-# Basically just copy the functions you want to change, and change them.
 if debug == 1:
     cprint("Adding mods...", "red")
+file = open(sys.path[0] + "/mods.conf").read().split()
+for line in file:
+    open_mod(line)
 #-------------------------------------------#
 ## Run modpack functions here!
 if debug == 1:
     cprint("Loading mods...", "red")
+
+
+def mod_functions(command, split, fullcommand):
+    if False:
+        pass
+    else:
+        return False
+    return True
+
+
 ## This is where the code starts to run
 cprint("Welcome to Adventure Fangame!", "green")
 cprint("Original development by Willie Crowther.", "green")
