@@ -1,6 +1,6 @@
 """
-Colossal Cave Adventure Sequel
-v1.1.0 Completed
+Colossal Cave Adventure Sequel - Engine
+v1.0.0 Completed
 
 Created by TheMadPunter
 (c) 2022
@@ -11,12 +11,12 @@ number of rooms + total of itemScore + 30
 """
 import sys
 #-------------------METADATA----------------#
-version = "v1.1.0 Completed"
+version = "v1.0.0 Completed"
 branch_creator = "TheMadPunter"
 python_version = sys.version
-mods = ["Vanilla CCA Engine by Themadpunter"]
-mod_versions = ["v1.1.0 Completed"]
-modpack_name = "Vanilla CCA Engine"
+mods = ["New CCA Engine by Themadpunter"]
+mod_versions = ["v1.0.0 Completed"]
+modpack_name = "New CCA Engine"
 acknowledgements = ["Willie Crowther and Don Woods for Original Game"]
 other = """"""
 debug = 0
@@ -46,24 +46,7 @@ def createList(r1, r2):
     return [item for item in range(r1, r2 + 1)]
 
 
-"""
-For documentation purposes:
-ALL ITEMS TO DROP FOR MAX POINTS
-Pearl (25)
-Gold (25)
-Vase (25)
-Stick (1)
-DON'T DROP THE FIRST 2 COINS!
-Coins #3 (10)
-Silver (25)
-Scale (25)
-Platinum Sword (50)
-OTHER STUFF
-Get well in (26)
-Don't die (30)
-Get Excalibur (25)
-SCORE: 267
-"""
+
 #Other
 vmach = 0
 tookCoins = 0
@@ -77,48 +60,18 @@ ots = 0
 #Inventory, items list
 invent = []
 items = [
-    "knife", "rod", "stick", "coins", "oyster", "pearl", "gold", "vase",
-    "chips", "silver", "letter", "doormat", "key", "sword", "dragon", "scale",
-    "excalibur"
+    "knife"
 ]
 itemDesc = [
-    "A butter knife lies on the ground.", "A black rod lies on the ground.",
-    "A stick lies on the ground.", "Some coins are on the ground here!",
-    "An oyster lies on the ground here.", "A pearl lies on the ground here!",
-    "There is a gold nugget here!", "There is a vase here!",
-    "There is a bag of potato chips here for some reason.",
-    "There is a bar of silver here!", "A letter lies on the ground.",
-    "A doormat reading, \"Come in\" is on the ground.",
-    "A key is on the ground.",
-    "A golden sword heroically lies on the ground here.",
-    "There is a dragon here!", "There is a dragon scale here!",
-    "A platinum sword (Excalibur?) EVEN MORE HEROICALLY lies on the ground here."
+    "A butter knife lies on the ground."
 ]
 invDesc = [
-    "A butter knife", "A black rod", "A short stick", "Some coins",
-    "An oyster", "A valuable pearl", "A gold nugget", "An Oriental vase",
-    "A bag of potato chips", "A bar of silver", "A letter from a mailbox",
-    "A doormat", "A house key", "A golden sword",
-    "why the heck do you have a dragon in your inventory lol",
-    "A dragon scale", "A platinum sword (Excalibur)"
+    "A butter knife"
 ]
-itemScore = [0, 0, 1, 10, 0, 25, 25, 25, 0, 25, 0, 0, 0, 25, -99999, 25, 50]
+itemScore = [0]
 #Hints
 hints = [
-    "Try using directions to move, e.g. \"east\".",
-    "A butter knife may eventually be useful for something...", "", "",
-    "Hmm. I remember a magic rod from the first game...", "", "", "",
-    "Why is \"xyzzy\" written on the wall? Maybe it does something.", "",
-    "I wonder what the chute does? Try dropping something down it and seeing if your score increases.",
-    "What does the rod do? Well, you can swing it... you can wave it... you can drop it... There are so may possibilites.",
-    "What does the rod do? Well, you can swing it... you can wave it... you can drop it... There are so may possibilites.",
-    "I feel like there is something inside the oyster. You should open it.",
-    "", "Maybe you should just sit down here and look around.", "", "",
-    "I wonder if you can buy something from the vending machine?",
-    "Try giving him what he wants.", "", "", "What's in the mailbox?",
-    "Where would they hide the key? Is it under something?", "",
-    "I wonder what you can do with your sword. Can you swing it?",
-    "Deposit a golden sword here."
+    "Try using directions to move, e.g. \"east\"."
 ]
 
 #cprint(str(len(hints)), "blue")
@@ -126,111 +79,9 @@ hints = [
 #Make rooms
 rooms = createList(0, 9999)
 rooms[0] = Room(
-    0, ["q", 1, "q", "q"],
-    "You are at the end of a small brick road. A small building lies to the east.",
-    0)
-rooms[1] = Room(
-    1, ["q", 2, "q", 0],
-    "You are inside a building near a small brick road. A door to the east leads outside to a stream.\nThere is a table here.",
+    0, ["q", "q", "q", "q"],
+    "You are in a test room.",
     1)
-rooms[2] = Room(
-    2, ["q", "q", 3, 1],
-    "You are outside next to a small building. A stream continues south, but a wall blocks your way north.",
-    0)
-rooms[3] = Room(
-    3, [2, "q", 4, "q"],
-    "You are at the south end of the stream. A cave appears to be to the south.",
-    0)
-rooms[4] = Room(
-    4, [3, "q", "q", 5],
-    "You are at the mouth of the cave. There is a stream to the north, and a small passageway here to the west.",
-    2)
-rooms[5] = Room(
-    5, ["q", 4, 6, 7],
-    "You are in a small room in the cave. The stream continues through a hole into the cave. The mouth of the cave is to your east. There are small passages to the west and south.",
-    0)
-rooms[6] = Room(
-    6, [5, "q", "q", 8],
-    "You are inside a small passage in the cave. To the west there is  a room with washed up debris from the river. Behind you, to the north, a small room in the cave.",
-    0)
-rooms[7] = Room(
-    7, ["q", 5, 8, "q"],
-    "You are in a small passage in the cave. To the south from here is a room with debris that came from the river. To the east, there is a small room in the cave.",
-    3)
-rooms[8] = Room(
-    8, [7, 6, "q", 9],
-    "You are in a room in the cave where the river from outside continues flowing to the inside. There is lots of debris in this room. Passages spring from the north, east, and west.\nAn engraving on the wall reads:\n\"MAGIC WORD XYZZY\".",
-    0)
-rooms[9] = Room(
-    9, ["q", 8, 10, 11],
-    "You are in a small hallway in the cave. To the east there is a room with lots of debris, and to the south a room with a mysterious chute. The hallway continues to the west.",
-    4)
-rooms[10] = Room(
-    10, [9, "q", "q", "q"],
-    "You are in a room with a mysterious chute. You can deposit items in it, it appears. There is a small hallway to the north.",
-    0)
-rooms[11] = Room(
-    11, ["q", 9, "q", "q"],
-    "You are at the end of the hallway. The cave appears to continue on, but there is a giant pit in the way.",
-    0)
-rooms[12] = Room(
-    12, ["q", "q", "q", 13],
-    "You are at a continuation of the hallway. There is a giant pit to the west. The hallway continues to the west.",
-    0)
-rooms[13] = Room(
-    13, ["q", 12, "q", 14],
-    "You are in a hallway. The walls are slightly smoother on the left side of the wall, but look like swiss cheese on the right. The hallway continues to both the west and the east.",
-    5)
-rooms[14] = Room(
-    14, [15, 13, 16, "q"],
-    "You are at the end of a hallway. The hall branches to the north and the south.",
-    7)
-rooms[15] = Room(
-    15, ["q", "q", 14, "q"],
-    "You are inside a room with a lot of rocks on the floor. One big rock here reads: \"Y2\".",
-    0)
-rooms[16] = Room(
-    16, [14, 17, "q", "q"],
-    "You are inside a room with a lot of antique items. A hallway is to the north, and another to the east.",
-    8)
-rooms[17] = Room(
-    17, ["q", 18, "q", 16],
-    "You are inside a room with a slab on the floor that appears to have fallen from the ceiling. There is another room to the west, and to the east.",
-    0)
-rooms[18] = Room(
-    18, [20, 19, "q", 17],
-    "You are inside a room with warm walls. There is a passage to the west, the east, and the north.",
-    0)
-rooms[19] = Room(
-    19, ["q", 21, "q", 18],
-    "You are inside a room with slightly warm walls. There is a passage to the west and the east. There is a vending machine here!\nThe vending machine reads: Pay me some coins for a prize!",
-    0)
-rooms[20] = Room(
-    20, ["q", "q", 18, "q"],
-    "You are inside a room next to the edge of a cliff. You can see an exit to the cave, but can't reach it due to a cliff being in your way.\nAn old man is here, asking if he can borrow some potato chips.",
-    0)
-rooms[21] = Room(
-    21, ["q", 22, "q", 19],
-    "You are inside a room with cold walls. A path loops around to the east and eventually comes out to a exit of the cave.",
-    0)
-rooms[22] = Room(
-    22, [23, 25, "q", 21],
-    "You are at a different enterance to the cave. There is a house to the north. There is a mailbox here. Part of the cave is to the west, and part is to the east.",
-    0)
-rooms[23] = Room(
-    23, ["q", "q", 22, "q"],
-    "You are at a house. An enterance to the cave is to the south. It appears you can't get in without a key.",
-    12)
-rooms[24] = Room(24, ["q", "q", 23, "q"],
-                 "You are inside a house. An exit is to the south.", 14)
-rooms[25] = Room(
-    25, ["q", 26, "q", 22],
-    "You are inside the cave again. There is an exit to the west and to the east.",
-    15)
-rooms[26] = Room(
-    26, ["q", "q", "q", 25],
-    "You are inside a lit room in the cave. There is a brilliant stone here with an inscription on it: \"Yummy Sword\". I think it wants your sword.",
-    0)
 
 
 ### Need to pre reference
@@ -243,21 +94,12 @@ def start_room(room):
     global room_no, wis, invent, hs, vmach, tookCoins
     global isKey, ss, ots
     scores = rscore()
-    if scores + hs >= 267:
-        cprint(
-            "Congratulations, adventurer! Your adventure is over! You have collected everything in the game.",
-            "green")
-        score()
-        game_over()
     cprint(room.str, "green")
     room_no = room.no
     if wis < room_no:
         wis = room_no
     if room.item > 0:
         cprint(itemDesc[room.item - 1], "green")
-    if random.randint(1, 5) == 1:
-        if room_no == 15:
-            cprint("A hollow voice says, \"Plugh\".", "green")
     while True:
         command = input(colored("\nWhat's next? ", "green"))
         print()
@@ -271,9 +113,7 @@ def start_room(room):
                 else:
                     start_room(rooms[room.dirs[1]])
             elif command == "n" or command == "north":
-                if (13 in invent and room_no == 23):
-                    start_room(rooms[24])
-                elif room.dirs[0] == "q":
+                if room.dirs[0] == "q":
                     cprint("You can't go that way!", "green")
                 else:
                     start_room(rooms[room.dirs[0]])
@@ -296,54 +136,15 @@ def start_room(room):
                 cprint(room.str, "green")
                 if room.item > 0:
                     cprint(itemDesc[room.item - 1], "green")
-                if random.randint(0, 5) == 1:
-                    if room_no == 15:
-                        cprint("A hollow voice says, \"Plugh\".", "green")
+            
             elif profanity.contains_profanity(
                     command) and not split[0] == "kill":
                 cprint("Watch it!", "green")
             elif split[0] == "take" or split[0] == "grab" or split[0] == "get":
                 if room.item > 0:
-                    if room.item == 12:
-                        if isKey == 1:
-                            isKey = 2
-                    if room.item == 15:
-                        cprint(
-                            "You just picked up a dragon! Oh wait. No. You didn't. Please contact a mental health professional.",
-                            "green")
-                    else:
-                        room.item = take(split, room.item)
-                    if isKey == 2:
-                        cprint("A key is under the doormat!", "green")
-
-                        room.item = 13
-                        isKey = 0
+                    room.item = take(split, room.item)
             elif split[0] == "drop" or split[0] == "throw":
                 drop(split, room)
-            elif command == "xyzzy":
-                if 2 in invent:
-
-                    if room_no == 1:
-                        start_room(rooms[8])
-                    elif room_no == 8:
-                        start_room(rooms[1])
-                    else:
-                        cprint("Nothing happens.", "green")
-                else:
-                    cprint("I don't know how to apply that word here!",
-                           "green")
-            elif command == "plugh":
-                if 2 in invent:
-
-                    if room_no == 15:
-                        start_room(rooms[1])
-                    elif room_no == 1:
-                        start_room(rooms[15])
-                    else:
-                        cprint("Nothing happens.", "green")
-                else:
-                    cprint("I don't know how to apply that word here!",
-                           "green")
             elif command == "help":
                 help_cca()
             elif split[0] == "use":
@@ -366,102 +167,10 @@ def start_room(room):
             elif command == "news":
                 news()
             elif split[0] == "deposit":
-                if room_no == 10:
+                if room_no == 0:
                     deposit(split, room)
-                elif room_no == 26:
-                    if 14 in invent:
-                        cprint(
-                            "You heroically deposit your sword into the pedestal. A white light flashes in the sky, and you see a number increase somewhere. The sword floats out of the pedestal back into your inventory, and turns platinum. It's Excalibur now, I think.",
-                            "green")
-                        i = invent.index(14)
-                        invent = invent[:i] + [17] + invent[i + 1:]
-                        ots += 25
-                    else:
-                        cprint("You can only deposit a golden sword here!",
-                               "green")
                 else:
                     cprint("You cannot deposit anything here.", "green")
-            elif split[0] == "wave":
-                if split[1] == "rod":
-                    if 7 in invent:
-                        cprint("You can't wave the rod, for some reason.",
-                               "green")
-                    else:
-                        if room_no == 11:
-                            start_room(rooms[12])
-                        elif room_no == 12:
-                            start_room(rooms[11])
-                        else:
-                            cprint("Nothing happens.", "green")
-                else:
-                    cprint("You can't wave that!", "green")
-            elif split[0] == "open":
-                if split[1] == "oyster":
-                    if 5 in invent and 1 in invent:
-                        i = invent.index(5)
-                        invent = invent[:i] + [6] + invent[i + 1:]
-                        cprint(
-                            "You crack open the oyster. There is a pearl inside!",
-                            "green")
-                    else:
-                        cprint("You can't!", "green")
-                elif split[1] == "mailbox":
-                    if room_no == 22:
-                        cprint(
-                            "You open the mailbox. There is a letter inside!",
-                            "green")
-                        if room.item > 0:
-                            cprint(
-                                "It was going to fall out onto the ground, but there's already something there.",
-                                "green")
-                        else:
-                            cprint("It falls out on the ground.", "green")
-                            room.item = 11
-
-                    else:
-                        cprint("What mailbox?", "green")
-                elif split[1] == "chips":
-                    if 9 in invent:
-                        cprint(
-                            "Nghhhh... they're... so... dang... hard... to... open... just... like... that... pickle jar...",
-                            "green")
-                    else:
-                        cprint("What chips?", "green")
-                else:
-                    cprint("Ok. How do you open that?", "green")
-            elif split[0] == "swing":
-                if split[1] == "rod":
-                    if 2 in invent:
-                        if 7 in invent:
-                            cprint("You can't swing the rod, for some reason.",
-                                   "green")
-                        else:
-
-                            cprint("Nothing happens.", "green")
-                    else:
-                        cprint("You don't have one!", "green")
-                elif split[1] == "sword":
-                    if 14 or 17 in invent:
-                        if 7 in invent:
-                            cprint(
-                                "You can't swing the sword, for some reason.",
-                                "green")
-                        else:
-                            if room_no == 25:
-                                if room.item == 15:
-                                    cprint(
-                                        "Congratulations! You just killed a dragon with a sword! (At least that's believable...)\nYou got 15 EXP!\nYou leveled up!\nYou got a dragon scale!",
-                                        "green")
-                                    invent.append(16)
-                                    room.item = 0
-                                else:
-                                    cprint("Whoa! That's heavy!", "green")
-                            else:
-                                cprint("Nothing happens.", "green")
-                    else:
-                        cprint("You don't have one!", "green")
-                else:
-                    cprint("You can't swing that!", "green")
             elif command == "hint":
                 if hints[room_no] == "":
                     cprint("There are no hints right now.", "green")
@@ -470,34 +179,11 @@ def start_room(room):
                     cprint("Taking one point off your score to get a hint...",
                            "green")
                     cprint(hints[room_no], "green")
-            elif command == "nothing" or command == "wait":
+            elif command == "nothi" or command == "wait":
                 cprint("Waiting...", "green")
-            elif split[0] == "buy":
-                if room_no == 19:
-                    if 4 in invent:
-
-                        if vmach == 0:
-                            cprint(
-                                "You deposit coins in the vending machine. You get a bag of potato chips.",
-                                "green")
-                            i = invent.index(4)
-                            invent = invent[:i] + [9] + invent[i + 1:]
-                            vmach += 1
-                        elif vmach == 1:
-                            cprint(
-                                "You deposit coins in the vending machine. You get a bar of silver.",
-                                "green")
-                            i = invent.index(4)
-                            invent = invent[:i] + [10] + invent[i + 1:]
-                            vmach += 1
-                        else:
-                            cprint("All out of prizes.", "green")
-                    else:
-                        cprint("You don't have any money!", "green")
-                else:
-                    cprint("Nothing to buy here.", "green")
+            
             elif split[0] == "eat":
-                if split[1] == "chips":
+                if False:
                     cprint("You're not hungry.", "green")
                 else:
                     cprint("You can't eat that!", "green")
@@ -506,65 +192,10 @@ def start_room(room):
                     cprint("You're not thirsty.", "green")
                 else:
                     cprint("You can't drink that!", "green")
-            elif split[0] == "give":
-                if room_no == 20:
-                    if split[1] == "chips":
-                        cprint(
-                            "You give him the chips. He gives you some coins.",
-                            "green")
-                        i = invent.index(9)
-                        invent = invent[:i] + [4] + invent[i + 1:]
-                    else:
-                        cprint("He doesn't want those.", "green")
-                else:
-                    cprint("Nobody to give things to.", "green")
-            elif split[0] == "read":
-                if split[1] == "letter":
-                    if 11 in invent:
-                        cprint("You read the letter.", "green")
-                        cprint(
-                            """-----------LATE PAYMENT NOTICE-------------
-Dear Mr. Bananalimorangeramnairtime:
-Your credit card bill was due 928374928 years ago. We still have not gotten it back.
-Please pay this bill, or we will contact the authorities on how much time you have been late on this payment.
-My condolences,
-Bob
-
-P. S. lolololololololololololololololol
-
-Enclosed are some coins.""", "green")
-                        if tookCoins == 0:
-                            invent.append(4)
-                            tookCoins = 1
-                    else:
-                        cprint("What letter?", "green")
-                else:
-                    cprint("I'm game. How do you do that?", "green")
             elif split[0] == "dbgr":
                 start_room(rooms[int(split[1])])
             elif split[0] == "dbgi":
                 invent.append(int(split[1]))
-            elif split[0] == "attack" or split[0] == "kill" or split[
-                    0] == "slay":
-                if split[1] == "dragon":
-                    if room_no == 25:
-                        really_what = input(
-                            colored("With what? Your bare hands? ", "green"))
-                        if really_what[0] == "y":
-                            cprint(
-                                "You attacked a dragon with your bare hands! It didn't go well!",
-                                "green")
-                            ss = 0
-                            cprint("Game over!", "green")
-                            score()
-                            game_over()
-                        else:
-                            cprint("Good. I'm glad you came to your senses.",
-                                   "green")
-                    else:
-                        cprint("Dragon? Where?", "green")
-                else:
-                    cprint("You can't attack that.", "green")
             elif command == "debug":
                 debug_stuff()
             elif command == "game":
@@ -676,17 +307,8 @@ def news():
     cprint("V1.0.2 Finished: Modloader capability", "yellow")
     cprint("V1.0.1 Finished: Small updates about modding", "yellow")
     cprint(
-        "V1.0.0 Working: You can win now! Added a lot of documentation, plus the game works.",
-        "blue")
-    cprint("V0.5: more stuff like excalibur", "blue")
-    cprint("V0.4: Added a lot more treasure and also a dragon", "blue")
-    cprint("V0.3: We have a 151 point game yay", "blue")
-    cprint(
-        "V0.2: Added some more rooms, some more treasures, some more mechanics...",
-        "blue")
-    cprint("V0.1: Added the basic engine, including picking stuff up, etc.",
-           "blue")
-
+        "V1.0.0 Working: Turned the game into an engine.",
+        "green")
 
 def game_data():
     cprint("GAME DATA", "yellow")
